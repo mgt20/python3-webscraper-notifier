@@ -1,5 +1,5 @@
 # python3-webscraper-emailer 
-A simple python3 script that sends an e-mail alert if a desired item is on a webpage.
+A simple python3 script that sends an e-mail alert if a desired item is on a webpage. Includes a Dockerfile which allows the script to run on a cron schedule inside of its own Docker container. Can be ran with or without docker.
 
 Pre-Requisites:
 1. docker
