@@ -4,7 +4,7 @@ import bs4, requests, smtplib, logging
 logging.basicConfig(filename='log.log', filemode='w', level=logging.DEBUG)
 
 ## Configure these variables:
-toAddress = ['$senttheemailtothisaddress@gmail.com']
+toAddress = ['$sendtheemailtothisaddress@gmail.com']
 # This is the email address you want to notify when there is a match
 webpage = '$http://www.whateverwebsiteyouwant.xyz/items.html'
 # This is the webpage you want to scrape
@@ -39,7 +39,7 @@ if available == True:
     conn.ehlo() # call this to start the connection
     conn.starttls() # starts tls encryption. When we send our password it will be encrypted.
     conn.login(fromAddress, fromPassword)
-    conn.sendmail(fromAddress, toAddress, 'Subject: python3-webscraper-emailer alert!\n\nAttention!\n\nYour favorite item is available today!\n\nVisit ' + (webpage) + ' to see it\n\npython3-webscraper-emailer V1.0')
+    conn.sendmail(fromAddress, toAddress, 'Subject: python3-webscraper-emailer alert!\n\nAttention!\n\n ' + (searchterm) + ' is available today!\n\nVisit ' + (webpage) + ' to see it\n\npython3-webscraper-emailer V1.0')
     conn.quit()
     print('Sent notificaton e-mails for the following recipients:\n')
     for i in range(len(toAddress)):
