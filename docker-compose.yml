@@ -5,3 +5,4 @@ services:
     build: .
     environment:
       - TZ=America/Los_Angeles
+    restart: unless-stopped
