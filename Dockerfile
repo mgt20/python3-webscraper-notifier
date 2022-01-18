@@ -1,4 +1,4 @@
-FROM python:3.7-alpine3.11
+FROM python:3.9-alpine3.15
 COPY python3-webscraper-emailer.py /python3-webscraper-emailer.py
 # RUN echo "* * * * * echo hello" | crontab - 
 RUN pip install bs4 requests
