@@ -1,8 +1,24 @@
 FROM python:3.9-alpine3.15
-COPY python3-webscraper-emailer.py /python3-webscraper-emailer.py
-# RUN echo "* * * * * echo hello" | crontab - 
-RUN pip install bs4 requests
 
-RUN echo "0 8-17/2 * * * python /python3-webscraper-emailer.py" | crontab -
+RUN apk update && \
+    apk upgrade && \
+    pip install bs4 requests
 
-CMD ["crond","-f"]
+RUN mkdir -p app
+
+WORKDIR /app
+
+# Set pythonpath to the working directory of the container
+ENV PYTHONPATH "${PYTHONPATH}:/app"
+
+# Copy required files into the working directory of the container
+COPY script.py script.py
+COPY config.ini config.ini
+COPY docker-entrypoint.sh docker-entrypoint.sh
+COPY cronjobs /etc/crontabs/root
+
+# Set permissions for files
+#RUN chmod 644 /etc/cron.d/cronjobs 
+RUN chmod a+x script.py docker-entrypoint.sh
+
+ENTRYPOINT ["/app/docker-entrypoint.sh"]
