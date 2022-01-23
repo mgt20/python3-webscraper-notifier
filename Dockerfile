@@ -14,11 +14,11 @@ ENV PYTHONPATH "${PYTHONPATH}:/app"
 # Copy required files into the working directory of the container
 COPY script.py script.py
 COPY config.ini config.ini
-COPY docker-entrypoint.sh docker-entrypoint.sh
+COPY entrypoint.sh entrypoint.sh
 COPY cronjobs /etc/crontabs/root
 
 # Set permissions for files
 #RUN chmod 644 /etc/cron.d/cronjobs 
-RUN chmod a+x script.py docker-entrypoint.sh
+RUN chmod a+x script.py entrypoint.sh
 
-ENTRYPOINT ["/app/docker-entrypoint.sh"]
+ENTRYPOINT ["/app/entrypoint.sh"]
